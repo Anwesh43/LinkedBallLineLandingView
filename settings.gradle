@@ -1,0 +1,3 @@
+include ':balllinelandingview'
+include ':app'
+rootProject.name = "LinkedBallLineLandingView"

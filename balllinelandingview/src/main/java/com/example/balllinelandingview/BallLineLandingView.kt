@@ -188,4 +188,27 @@ class BallLineLandingView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BallLineLandingView) {
+
+        private val bll : BallLineLanding = BallLineLanding(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bll.draw(canvas, paint)
+            animator.animate {
+                bll.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bll.update {
+                animator.start()
+            }
+        }
+    }
 }

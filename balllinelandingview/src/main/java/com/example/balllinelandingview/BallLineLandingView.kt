@@ -213,4 +213,13 @@ class BallLineLandingView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BallLineLandingView {
+            val view : BallLineLandingView = BallLineLandingView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }

@@ -25,6 +25,7 @@ val rFactor : Float = 10.9f
 val lineFactor : Float = 3.5f
 val parts : Int = 4
 val scGap : Float = 0.02f / parts
+val deg : Float = 25f
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -46,8 +47,9 @@ fun Canvas.drawBallLineLanding(scale : Float, w : Float, h : Float, paint : Pain
     drawCircle(0f, r, r * sf1, paint)
     for (j in 0..1) {
         save()
-        rotate(45f * (1f - 2 * j) * sf4)
-        drawLine(0f, r, 0f, r + lineSize * sf2, paint)
+        translate(0f, 2 * r)
+        rotate(deg * (1f - 2 * j) * sf4)
+        drawLine(0f, 0f, 0f, lineSize * sf2, paint)
         restore()
     }
     restore()
@@ -208,7 +210,7 @@ class BallLineLandingView(ctx : Context) : View(ctx) {
         }
 
         fun handleTap() {
-            bll.update {
+            bll.startUpdating {
                 animator.start()
             }
         }
